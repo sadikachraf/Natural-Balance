@@ -134,7 +134,7 @@
   function switchImg(thumb,src){const main=document.getElementById('pdp-main-img');if(!main)return;main.style.opacity='0';setTimeout(()=>{main.src=src;main.style.opacity='1'},160);document.querySelectorAll('.pdp-thumb').forEach(t=>t.classList.remove('on'));thumb.classList.add('on')}
   function setFPkg(n){currentFPkg=n;document.querySelectorAll('.f-pick').forEach((el,i)=>el.classList.toggle('on',i===n-1));trackEvent('PackageSelected',pkgPayload(n),false)}
   function toggleFaq(el){el.parentElement.classList.toggle('open')}
-  function smoothToForm(){const f=document.getElementById('objednat');if(f)f.scrollIntoView({behavior:'smooth',block:'start'})}
+  function smoothToForm(){const target=document.querySelector('.f-pkg-picker')||document.getElementById('objednat');if(target){const y=target.getBoundingClientRect().top+window.pageYOffset-82;window.scrollTo({top:Math.max(0,y),behavior:'smooth'})}}
   document.querySelectorAll('.js-scroll').forEach(a=>a.addEventListener('click',function(e){e.preventDefault();smoothToForm()}));
   const sticky=document.getElementById('sticky-cta');if(sticky)sticky.addEventListener('click',function(){trackEvent('ClickStickyMobileCTA',{cta:'sticky_mobile'},false);smoothToForm()});
   document.querySelectorAll('.js-hero-cta').forEach(el=>el.addEventListener('click',()=>trackEvent('ClickHeroCTA',{cta:'hero'},false)));
